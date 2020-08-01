@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HelloWorld-webassembly-with-c</title>
+  </head>
+  <body>
+      <h1>Hello World!</h1>
+    <textarea id="output" rows="8"></textarea>
+    <script>
+      Module = {
+        print: (function () {
+          var element = document.getElementById("output");
+          if (element) element.value = ""; // clear browser cache
+          return function (text) {
+            if (arguments.length > 1)
+              text = Array.prototype.slice.call(arguments).join(" ");
+            if (element) {
+              element.value += text + "\n";
+              element.scrollTop = element.scrollHeight; // focus on bottom
+            }
+          };
+        })(),
+      };
+    </script>
+    <script src="helloworld.js"></script>
+  </body>
+</html>
